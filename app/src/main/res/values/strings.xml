@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Figma Auto-Identification</string>
+    <string name="figma_link_label">Figma File Link</string>
+    <string name="figma_link_hint">Enter Figma file URL</string>
+    <string name="figma_token_label">Figma Personal Access Token</string>
+    <string name="figma_token_hint">Enter your Figma token (securely)</string>
+    <string name="submit_button_text">Submit</string>
+    <string name="identify_button_text">Identify JSON</string>
+    <string name="figma_link_not_attached">Please enter Figma link</string>
+    <string name="figma_token_not_attached">Please enter Figma token</string>
+    <string name="internet_error">Internet not available</string>
+    <string name="loading_progress">Loading…</string>
+    <string name="file_saved_success">JSON file saved successfully</string>
+    <string name="file_saved_fail">JSON file failed to save</string>
+    <string name="file_not_found">JSON File Not Found</string>
+    <string name="file_found">JSON File Found</string>
+</resources>
