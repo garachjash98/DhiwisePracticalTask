@@ -20,7 +20,8 @@ import java.io.OutputStreamWriter
 
 
 const val FOLDER_NAME = "Figma Auto Identification"
-const val JSON_RESPONSE_FILE_NAME = "figma_file_response.json"
+const val FIGMA_API_RESPONSE_JSON_FILE_NAME = "figma_file_response.json"
+const val IDENTIFY_JSON_FILE_NAME = "final_file_response.json"
 
 
 /*Coroutines Scopes*/
@@ -58,15 +59,16 @@ fun extractedFileIdFromFigmaLink(figmaUrl: String): String? {
 
 // Save FigmaFileResponse LiveData to JSON file
 fun saveFigmaFileResponseToFile(
+    fileName: String,
     figmaFileResponse: FigmaFileResponse,
     onFileSaved: (Boolean) -> Unit
 ) {
     val gson = Gson()
     val json = gson.toJson(figmaFileResponse)
-    saveJsonToFile(json = json, onFileSaved = onFileSaved)
+    saveJsonToFile(fileName = fileName,json = json, onFileSaved = onFileSaved)
 }
 
-private fun saveJsonToFile(json: String, onFileSaved: (Boolean) -> Unit) {
+ fun saveJsonToFile(fileName: String,json: String, onFileSaved: (Boolean) -> Unit) {
     val folderName = "Figma Auto Identification"
     val downloadFolder =
         Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)
@@ -75,7 +77,7 @@ private fun saveJsonToFile(json: String, onFileSaved: (Boolean) -> Unit) {
     if (!folder.exists()) {
         folder.mkdirs()
     }
-    val file = File(folder, "figma_file_response.json")
+    val file = File(folder, fileName)
     try {
         if (file.exists()) {
             file.delete()
@@ -103,7 +105,7 @@ private fun saveJsonToFile(json: String, onFileSaved: (Boolean) -> Unit) {
 fun checkJSONFileExitsOrNot():Boolean{
     val downloadFolder = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)
     val folder = File(downloadFolder, FOLDER_NAME)
-    val file = File(folder, JSON_RESPONSE_FILE_NAME)
+    val file = File(folder, FIGMA_API_RESPONSE_JSON_FILE_NAME)
     return file.exists()
 }
 
